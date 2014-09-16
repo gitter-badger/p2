@@ -1,0 +1,195 @@
+<?php 
+
+/*-------------- Configuration settings --------------*/
+
+//If no number is submitted with the form, this will be the default number of words
+$defaultWords = 4;
+
+//Websites with the words lists
+$animalsPage = "http://www.manythings.org/vocabulary/lists/a/words.php?f=animals_1";
+$clothesPage = "http://www.manythings.org/vocabulary/lists/a/words.php?f=clothes_1";
+$fruitsPage = "http://www.manythings.org/vocabulary/lists/a/words.php?f=fruit_1";
+$toolsPage = "http://www.manythings.org/vocabulary/lists/a/words.php?f=tools_1";
+
+/*-------------- Application **DO NOT EDIT BELOW THIS POINT UNLESS YOU KNOW WHAT YOU'RE DOING** --------------*/
+
+//It's necesary to intialize the array in case Animals is unchecked 
+
+$allArray = [];
+
+//Array of animals
+if(!isset($_POST['animalsCheck']) || $_POST['animalsCheck'] == "yes"){
+  $animalsPageContent = file_get_contents($animalsPage);
+  preg_match_all('{<li>(.*?)</li>}i', $animalsPageContent,$animals);
+  $allArray = array_merge($animals[1]);
+}
+
+//Array of clothes
+if(!isset($_POST['clothesCheck']) || $_POST['clothesCheck'] == "yes"){
+  $clothesPageContent = file_get_contents($clothesPage);
+  preg_match_all('{<li>(.*?)</li>}i', $clothesPageContent,$clothes);
+  $allArray = array_merge($clothes[1],$allArray);
+}
+
+//Array of fruits
+if(!isset($_POST['fruitsCheck']) || $_POST['fruitsCheck'] == "yes"){
+  $fruitsPageContent = file_get_contents($fruitsPage);
+  preg_match_all('{<li>(.*?)</li>}i', $fruitsPageContent,$fruits);
+  $allArray = array_merge($fruits[1],$allArray);
+}
+
+//Array of tools
+if(!isset($_POST['toolsCheck']) || $_POST['toolsCheck'] == "yes"){
+  $toolsPageContent = file_get_contents($toolsPage);
+  preg_match_all('{<li>(.*?)</li>}i', $toolsPageContent,$tools);
+  $allArray = array_merge($tools[1],$allArray);
+}
+
+
+//The amount of words to display
+if(isset($_POST['numberOfWords'])){
+  $numberOfWords = $_POST['numberOfWords'];
+}else{
+  $numberOfWords = $defaultWords;
+}
+
+for ($i = 0; $i < $numberOfWords; $i++) {
+  $answer = $answer." ".$allArray[array_rand($allArray)];
+}
+
+?>
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <!--[if IE]><meta http-equiv="X-UA-Compatible" content="IE=edge"><![endif]-->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Jose Andrade - DWA15</title>
+
+    <!-- Bootstrap -->
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" href="css/customstyle.css" />
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+   
+  </head>
+  <body>
+
+  <!-- Fixed navbar -->
+    <div class="navbar navbar-default navbar-fixed-top" role="navigation">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand">DWA15</a>
+        </div>
+        <div class="navbar-collapse collapse">
+          <ul class="nav navbar-nav">
+            <li <?php if($_SERVER['SERVER_NAME'] == "p1.jandrade.me"){ echo "class=\"active\""; } ?>><a href="http://p1.jandrade.me">Project 1</a></li>
+            <li <?php if($_SERVER['SERVER_NAME'] == "p2.jandrade.me"){ echo "class=\"active\""; } ?>><a href="http://p2.jandrade.me">Project 2</a></li>
+            <li <?php if($_SERVER['SERVER_NAME'] == "p3.jandrade.me"){ echo "class=\"active\""; } ?>><a href="http://p3.jandrade.me">Project 3</a></li>
+            <li <?php if($_SERVER['SERVER_NAME'] == "p4.jandrade.me"){ echo "class=\"active\""; } ?>><a href="http://p4.jandrade.me">Project 4</a></li>
+          </ul>
+        </div><!--/.nav-collapse -->
+      </div>
+    </div>
+    <div class="container">
+      
+		<div class="row">
+			<div class="col-md-4 col-xs-3">&nbsp;</div>
+		  	<div class="col-md-4 col-xs-6">
+		 	  	<h1 class="text-center">xkcd style password </h1>
+		  	</div>
+		  	<div class="col-md-4 col-xs-3">&nbsp;</div>
+		</div>
+
+		<div class="row">
+			<div class="col-md-2 col-xs-1">&nbsp;</div>
+		  	<div class="col-md-8 col-xs-10">
+		 	  	<div class="text-center">This application will provide a set of random words you may use as oppsed to a regular password.</fiv>
+		  	</div>
+		  	<div class="col-md-2 col-xs-1">&nbsp;</div>
+		</div>
+
+		<div class="row">
+			
+		  	<div class="col-md-12 col-xs-12">
+		  		
+		 		<div class="jumbotron answer text-center">
+		  			<?php echo $answer; ?>
+		  		</div>
+		  		
+		  	</div>
+
+		</div>
+
+		<form name="form" action="index.php" method="post">
+
+		<div class="row">
+			<div class="col-md-2 col-xs-2">&nbsp;</div>
+		  	<div class="col-md-8 col-xs-8">
+		 	  	<div class="text-center">
+				
+					<h3>Select the number of words to display:</h3>
+					<select name="numberOfWords">
+					    <option value="1" <?php if($numberOfWords == 1){ echo "selected"; } ?> >1</option>
+					    <option value="2" <?php if($numberOfWords == 2){ echo "selected"; } ?> >2</option>
+					    <option value="3" <?php if($numberOfWords == 3){ echo "selected"; } ?> >3</option>
+					    <option value="4" <?php if($numberOfWords == 4){ echo "selected"; } ?> >4</option>
+					    <option value="5" <?php if($numberOfWords == 5){ echo "selected"; } ?> >5</option>
+					    <option value="6" <?php if($numberOfWords == 6){ echo "selected"; } ?> >6</option>
+					    <option value="7" <?php if($numberOfWords == 7){ echo "selected"; } ?> >7</option>
+					    <option value="8" <?php if($numberOfWords == 8){ echo "selected"; } ?> >8</option>
+					    <option value="9" <?php if($numberOfWords == 9){ echo "selected"; } ?> >9</option>
+					</select>
+				
+				</div>
+		  	</div>
+		  	<div class="col-md-2 col-xs-2">&nbsp;</div>
+		</div>
+
+		<div class="row">
+			<div class="col-md-2 col-xs-2">&nbsp;</div>
+		  	<div class="col-md-8 col-xs-8">
+		 	  	<div class="text-center">
+				
+					<h3>Select the items to include in the password</h3>
+					<h4>(words from all selected items will be displayed at random):</h4>
+					<!-- //State to be evaluated when form is loaded. Hidden input provides a variable value of "no" to check for state when unchecked. -->
+				  	<input type="hidden" name="animalsCheck" value="no"><input type="checkbox" name="animalsCheck" value="yes" <?php if(!isset($_POST['animalsCheck']) || $_POST['animalsCheck'] == "yes"){ echo "checked"; } ?> />Animals<br />
+		    		<input type="hidden" name="clothesCheck" value="no"><input type="checkbox" name="clothesCheck" value="yes" <?php if(!isset($_POST['clothesCheck']) || $_POST['clothesCheck'] == "yes"){ echo "checked"; } ?> />Clothes<br />
+		    		<input type="hidden" name="fruitsCheck" value="no"><input type="checkbox" name="fruitsCheck" value="yes" <?php if(!isset($_POST['fruitsCheck']) || $_POST['fruitsCheck'] == "yes"){ echo "checked"; } ?> />Fruits<br />
+		    		<input type="hidden" name="toolsCheck" value="no"><input type="checkbox" name="toolsCheck" value="yes" <?php if(!isset($_POST['toolsCheck']) || $_POST['toolsCheck'] == "yes"){ echo "checked"; } ?> />Tools<br />
+		    		<br>
+		    		<input type="submit" value="SUBMIT" />
+		
+				</div>
+		  	</div>
+		  	<div class="col-md-2 col-xs-2">&nbsp;</div>
+		</div>
+		</form>
+		
+    </div> <!-- /container -->
+
+    <script src="js/jquery-1.11.1.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+  
+  </body>
+</html>
+
+
+
+
+
+
