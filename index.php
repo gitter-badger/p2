@@ -115,11 +115,11 @@ for ($i = 0; $i < $numberOfWords; $i++) {
 		</div>
 
 		<div class="row">
-			<div class="col-md-2 col-xs-1">&nbsp;</div>
-		  	<div class="col-md-8 col-xs-10">
-		 	  	<div class="text-center">This application will provide a set of random words you may use as oppsed to a regular password.</fiv>
+			<div class="col-md-3 col-xs-1">&nbsp;</div>
+		  	<div class="col-md-6 col-xs-10">
+		 	  	<div class="text-center">This application will provide a set of random words you may use instead of a regular password.</div>
 		  	</div>
-		  	<div class="col-md-2 col-xs-1">&nbsp;</div>
+		  	<div class="col-md-3 col-xs-1">&nbsp;</div>
 		</div>
 
 		<div class="row">
@@ -179,6 +179,14 @@ for ($i = 0; $i < $numberOfWords; $i++) {
 		  	<div class="col-md-2 col-xs-2">&nbsp;</div>
 		</div>
 		</form>
+		<br><br>
+		<div class="row">
+			<div class="col-md-3 col-xs-1">&nbsp;</div>
+		  	<div class="col-md-6 col-xs-10">
+		  		<a href="http://xkcd.com/936/"><img src="img/password_strength.png" class="img-responsive center-block"></a>
+		  	</div>
+		  	<div class="col-md-3 col-xs-1">&nbsp;</div>
+		</div>
 		
     </div> <!-- /container -->
 
