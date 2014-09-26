@@ -9,11 +9,22 @@ $defaultWords = 4;
 
 /*----------------------------------------------------*/
 
+/*------------Words compiled from: http://www.manythings.org/vocabulary/lists/a/words.php --------*/
+
 include('config.php');
 
+//Initialize the variables
 $wordsList = [];
 $answer = '';
 
+//The amount of words to display
+if(isset($_POST['numberOfWords'])){
+  $numberOfWords = $_POST['numberOfWords'];
+}else{
+  $numberOfWords = $defaultWords;
+}
+
+//Connect to the database
 $mysqli = new mysqli($dbHost, $dbUser, $dbPass, $db);
 
 if ($mysqli->connect_errno) {
@@ -105,15 +116,20 @@ if(!isset($_POST['toolsCheck']) || $_POST['toolsCheck'] == "yes"){
 }
 
 
-//The amount of words to display
-if(isset($_POST['numberOfWords'])){
-  $numberOfWords = $_POST['numberOfWords'];
-}else{
-  $numberOfWords = $defaultWords;
+for ($i = 0; $i < $numberOfWords; $i++) {
+    if($_POST['separation'] == 'camelCase'){
+        $answer = $answer.ucfirst($wordsList[array_rand($wordsList)]);
+    }elseif($_POST['separation'] == 'hyphen'){
+        $answer = $answer."-".$wordsList[array_rand($wordsList)];
+    }else{
+        $answer = $answer." ".$wordsList[array_rand($wordsList)];
+    }
 }
 
-for ($i = 0; $i < $numberOfWords; $i++) {
-  $answer = $answer." ".$wordsList[array_rand($wordsList)];
+//Clean the answer - remove the first character
+if($_POST['separation'] != 'camelCase'){
+        $answer = substr($answer,1);
 }
+
 
 ?>

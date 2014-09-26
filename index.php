@@ -109,6 +109,20 @@ include('logic.php');
 		  	<div class="col-md-8 col-xs-8">
 		 	  	<div class="text-center">
 				
+					<h3>How will you like to separate the words?</h3>
+					<input type="radio" name="separation" value="space" <?php if(!isset($_POST['separation']) || $_POST['separation'] == "space"){ echo "checked"; } ?> > Space<br>
+					<input type="radio" name="separation" value="camelCase" <?php if($_POST['separation'] == "camelCase"){ echo "checked"; } ?> > CamelCase<br>
+					<input type="radio" name="separation" value="hyphen" <?php if($_POST['separation'] == "hyphen"){ echo "checked"; } ?> > Hyphen<br>
+				</div>
+		  	</div>
+		  	<div class="col-md-2 col-xs-2">&nbsp;</div>
+		</div>
+
+		<div class="row">
+			<div class="col-md-2 col-xs-2">&nbsp;</div>
+		  	<div class="col-md-8 col-xs-8">
+		 	  	<div class="text-center">
+				
 					<h3>Select the items to include in the password</h3>
 					<h4>(words from all selected items will be displayed at random):</h4>
 					<!-- //State to be evaluated when form is loaded. Hidden input provides a variable value of "no" to check for state when unchecked. -->
@@ -123,6 +137,7 @@ include('logic.php');
 		  	</div>
 		  	<div class="col-md-2 col-xs-2">&nbsp;</div>
 		</div>
+
 		</form>
 		<br><br>
 		<div class="row">
