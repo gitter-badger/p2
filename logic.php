@@ -117,10 +117,14 @@ if(!isset($_POST['toolsCheck']) || $_POST['toolsCheck'] == "yes"){
 
 
 for ($i = 0; $i < $numberOfWords; $i++) {
-    if($_POST['separation'] == 'camelCase'){
-        $answer = $answer.ucfirst($wordsList[array_rand($wordsList)]);
-    }elseif($_POST['separation'] == 'hyphen'){
-        $answer = $answer."-".$wordsList[array_rand($wordsList)];
+    if (isset ($_POST['separation'])) {
+        if($_POST['separation'] == 'camelCase'){
+            $answer = $answer.ucfirst($wordsList[array_rand($wordsList)]);
+        }elseif($_POST['separation'] == 'hyphen'){
+            $answer = $answer."-".$wordsList[array_rand($wordsList)];
+        }else{
+            $answer = $answer." ".$wordsList[array_rand($wordsList)];
+        }
     }else{
         $answer = $answer." ".$wordsList[array_rand($wordsList)];
     }
