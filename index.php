@@ -109,6 +109,30 @@ include('logic.php');
 		  	<div class="col-md-8 col-xs-8">
 		 	  	<div class="text-center">
 				
+					<h3>How many numbers will you like to include?</h3>
+					<select name="numberOfNumbers">
+						<option value="0" <?php if($numberOfNumbers == 0){ echo "selected"; } ?> >0</option>
+					    <option value="1" <?php if($numberOfNumbers == 1){ echo "selected"; } ?> >1</option>
+					    <option value="2" <?php if($numberOfNumbers == 2){ echo "selected"; } ?> >2</option>
+					    <option value="3" <?php if($numberOfNumbers == 3){ echo "selected"; } ?> >3</option>
+					    <option value="4" <?php if($numberOfNumbers == 4){ echo "selected"; } ?> >4</option>
+					    <option value="5" <?php if($numberOfNumbers == 5){ echo "selected"; } ?> >5</option>
+					    <option value="6" <?php if($numberOfNumbers == 6){ echo "selected"; } ?> >6</option>
+					    <option value="7" <?php if($numberOfNumbers == 7){ echo "selected"; } ?> >7</option>
+					    <option value="8" <?php if($numberOfNumbers == 8){ echo "selected"; } ?> >8</option>
+					    <option value="9" <?php if($numberOfNumbers == 9){ echo "selected"; } ?> >9</option>
+					</select>
+				
+				</div>
+		  	</div>
+		  	<div class="col-md-2 col-xs-2">&nbsp;</div>
+		</div>
+
+		<div class="row">
+			<div class="col-md-2 col-xs-2">&nbsp;</div>
+		  	<div class="col-md-8 col-xs-8">
+		 	  	<div class="text-center">
+				
 					<h3>How will you like to separate the words?</h3>
 					<input type="radio" name="separation" value="space" <?php if($separation == "space"){ echo "checked"; } ?> > Space<br>
 					<input type="radio" name="separation" value="camelCase" <?php if($separation == "camelCase"){ echo "checked"; } ?> > CamelCase<br>

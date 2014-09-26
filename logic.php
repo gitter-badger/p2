@@ -6,6 +6,7 @@
 
 //If no number is submitted with the form, this will be the default number of words
 $defaultWords = 4;
+$defaultNumbers = 1;
 
 /*----------------------------------------------------*/
 
@@ -29,6 +30,13 @@ if(isset($_POST['numberOfWords'])){
   $numberOfWords = $_POST['numberOfWords'];
 }else{
   $numberOfWords = $defaultWords;
+}
+
+//The amount of number to include
+if(isset($_POST['numberOfNumbers'])){
+  $numberOfNumbers = $_POST['numberOfNumbers'];
+}else{
+  $numberOfNumbers = $defaultNumbers;
 }
 
 //Connect to the database
@@ -140,6 +148,10 @@ for ($i = 0; $i < $numberOfWords; $i++) {
 //Clean the answer - remove the first character
 if($separation != 'camelCase'){
         $answer = substr($answer,1);
+}
+
+for ($i = 0; $i < $numberOfNumbers; $i++) {
+    $answer = $answer.rand(0,9);
 }
 
 
