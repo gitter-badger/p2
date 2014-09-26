@@ -1,86 +1,6 @@
-<?php 
+<?php
 
-include('config.php');
-
-$mysqli = new mysqli($dbHost, $dbUser, $dbPass, $db);
-if ($mysqli->connect_errno) {
-    echo "Failed to connect to MySQL: (" . $mysqli->connect_errno . ") " . $mysqli->connect_error;
-}
-
-/*-------------- Configuration settings --------------*/
-
-//If no number is submitted with the form, this will be the default number of words
-$defaultWords = 4;
-
-//Websites with the words lists
-$animalsPage = "http://www.manythings.org/vocabulary/lists/a/words.php?f=animals_1";
-$clothesPage = "http://www.manythings.org/vocabulary/lists/a/words.php?f=clothes_1";
-$fruitsPage = "http://www.manythings.org/vocabulary/lists/a/words.php?f=fruit_1";
-$toolsPage = "http://www.manythings.org/vocabulary/lists/a/words.php?f=tools_1";
-
-/*-------------- Application **DO NOT EDIT BELOW THIS POINT UNLESS YOU KNOW WHAT YOU'RE DOING** --------------*/
-
-//It's necesary to intialize the array in case Animals is unchecked 
-
-$allArray = [];
-
-//Array of animals
-if(!isset($_POST['animalsCheck']) || $_POST['animalsCheck'] == "yes"){
-  $animalsPageContent = file_get_contents($animalsPage);
-  preg_match_all('{<li>(.*?)</li>}i', $animalsPageContent,$animals);
-  $allArray = array_merge($animals[1]);
-
-  	if (!($stmt = $mysqli->prepare("SELECT * FROM animals"))) {
-    	echo "Prepare failed: (" . $mysqli->errno . ") " . $mysqli->error;
-	}
-
-	if (!$stmt->execute()) {
-    	echo "Execute failed: (" . $stmt->errno . ") " . $stmt->error;
-	}
-
-	if (!($res = $stmt->get_result())) {
-    	echo "Getting result set failed: (" . $stmt->errno . ") " . $stmt->error;
-	}
-
-	var_dump($res->fetch_all());
-}
-
-print_r($res);
-
-//Array of clothes
-if(!isset($_POST['clothesCheck']) || $_POST['clothesCheck'] == "yes"){
-  $clothesPageContent = file_get_contents($clothesPage);
-  preg_match_all('{<li>(.*?)</li>}i', $clothesPageContent,$clothes);
-  $allArray = array_merge($clothes[1],$allArray);
-}
-
-//Array of fruits
-if(!isset($_POST['fruitsCheck']) || $_POST['fruitsCheck'] == "yes"){
-  $fruitsPageContent = file_get_contents($fruitsPage);
-  preg_match_all('{<li>(.*?)</li>}i', $fruitsPageContent,$fruits);
-  $allArray = array_merge($fruits[1],$allArray);
-}
-
-//Array of tools
-if(!isset($_POST['toolsCheck']) || $_POST['toolsCheck'] == "yes"){
-  $toolsPageContent = file_get_contents($toolsPage);
-  preg_match_all('{<li>(.*?)</li>}i', $toolsPageContent,$tools);
-  $allArray = array_merge($tools[1],$allArray);
-}
-
-/* explicit close recommended */
-$stmt->close();
-
-//The amount of words to display
-if(isset($_POST['numberOfWords'])){
-  $numberOfWords = $_POST['numberOfWords'];
-}else{
-  $numberOfWords = $defaultWords;
-}
-
-for ($i = 0; $i < $numberOfWords; $i++) {
-  $answer = $answer." ".$allArray[array_rand($allArray)];
-}
+include('logic.php');
 
 ?>
 
@@ -192,10 +112,10 @@ for ($i = 0; $i < $numberOfWords; $i++) {
 					<h3>Select the items to include in the password</h3>
 					<h4>(words from all selected items will be displayed at random):</h4>
 					<!-- //State to be evaluated when form is loaded. Hidden input provides a variable value of "no" to check for state when unchecked. -->
-				  	<input type="hidden" name="animalsCheck" value="no"><input type="checkbox" name="animalsCheck" value="yes" <?php if(!isset($_POST['animalsCheck']) || $_POST['animalsCheck'] == "yes"){ echo "checked"; } ?> />Animals<br />
-		    		<input type="hidden" name="clothesCheck" value="no"><input type="checkbox" name="clothesCheck" value="yes" <?php if(!isset($_POST['clothesCheck']) || $_POST['clothesCheck'] == "yes"){ echo "checked"; } ?> />Clothes<br />
-		    		<input type="hidden" name="fruitsCheck" value="no"><input type="checkbox" name="fruitsCheck" value="yes" <?php if(!isset($_POST['fruitsCheck']) || $_POST['fruitsCheck'] == "yes"){ echo "checked"; } ?> />Fruits<br />
-		    		<input type="hidden" name="toolsCheck" value="no"><input type="checkbox" name="toolsCheck" value="yes" <?php if(!isset($_POST['toolsCheck']) || $_POST['toolsCheck'] == "yes"){ echo "checked"; } ?> />Tools<br />
+				  	<input type="hidden" name="animalsCheck" value="no"><input type="checkbox" name="animalsCheck" value="yes" <?php if(!isset($_POST['animalsCheck']) || $_POST['animalsCheck'] == "yes"){ echo "checked"; } ?> /> Animals<br />
+		    		<input type="hidden" name="clothesCheck" value="no"><input type="checkbox" name="clothesCheck" value="yes" <?php if(!isset($_POST['clothesCheck']) || $_POST['clothesCheck'] == "yes"){ echo "checked"; } ?> /> Clothes<br />
+		    		<input type="hidden" name="fruitsCheck" value="no"><input type="checkbox" name="fruitsCheck" value="yes" <?php if(!isset($_POST['fruitsCheck']) || $_POST['fruitsCheck'] == "yes"){ echo "checked"; } ?> /> Fruits<br />
+		    		<input type="hidden" name="toolsCheck" value="no"><input type="checkbox" name="toolsCheck" value="yes" <?php if(!isset($_POST['toolsCheck']) || $_POST['toolsCheck'] == "yes"){ echo "checked"; } ?> /> Tools<br />
 		    		<br>
 		    		<input type="submit" value="SUBMIT" />
 		
