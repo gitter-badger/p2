@@ -1,6 +1,6 @@
 <?php
-//error_reporting(E_ALL);       # Report Errors, Warnings, and Notices
-//ini_set('display_errors', 1); # Display errors on page (instead of a log file)
+error_reporting(E_ALL);       # Report Errors, Warnings, and Notices
+ini_set('display_errors', 1); # Display errors on page (instead of a log file)
 
 /*-------------- Configuration settings --------------*/
 
@@ -16,6 +16,13 @@ include('config.php');
 //Initialize the variables
 $wordsList = [];
 $answer = '';
+
+//Initializing separation as variable instead of POST to avoid a PHP notice of Undefined Index
+if(!isset($_POST['separation'])) {
+    $separation = 'space';
+}else{
+    $separation = $_POST['separation'];
+}
 
 //The amount of words to display
 if(isset($_POST['numberOfWords'])){
@@ -117,7 +124,7 @@ if(!isset($_POST['toolsCheck']) || $_POST['toolsCheck'] == "yes"){
 
 
 for ($i = 0; $i < $numberOfWords; $i++) {
-    if (isset ($_POST['separation'])) {
+    if(isset($_POST['separation'])) {
         if($_POST['separation'] == 'camelCase'){
             $answer = $answer.ucfirst($wordsList[array_rand($wordsList)]);
         }elseif($_POST['separation'] == 'hyphen'){
@@ -131,7 +138,7 @@ for ($i = 0; $i < $numberOfWords; $i++) {
 }
 
 //Clean the answer - remove the first character
-if($_POST['separation'] != 'camelCase'){
+if($separation != 'camelCase'){
         $answer = substr($answer,1);
 }
 

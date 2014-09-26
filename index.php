@@ -110,9 +110,9 @@ include('logic.php');
 		 	  	<div class="text-center">
 				
 					<h3>How will you like to separate the words?</h3>
-					<input type="radio" name="separation" value="space" <?php if(!isset($_POST['separation']) || $_POST['separation'] == "space"){ echo "checked"; } ?> > Space<br>
-					<input type="radio" name="separation" value="camelCase" <?php if($_POST['separation'] == "camelCase"){ echo "checked"; } ?> > CamelCase<br>
-					<input type="radio" name="separation" value="hyphen" <?php if($_POST['separation'] == "hyphen"){ echo "checked"; } ?> > Hyphen<br>
+					<input type="radio" name="separation" value="space" <?php if($separation == "space"){ echo "checked"; } ?> > Space<br>
+					<input type="radio" name="separation" value="camelCase" <?php if($separation == "camelCase"){ echo "checked"; } ?> > CamelCase<br>
+					<input type="radio" name="separation" value="hyphen" <?php if($separation == "hyphen"){ echo "checked"; } ?> > Hyphen<br>
 				</div>
 		  	</div>
 		  	<div class="col-md-2 col-xs-2">&nbsp;</div>
