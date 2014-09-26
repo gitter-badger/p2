@@ -1,5 +1,12 @@
 <?php 
 
+include('config.php');
+
+$mysqli = new mysqli($dbHost, $dbUser, $dbPass, $db);
+if ($mysqli->connect_errno) {
+    echo "Failed to connect to MySQL: (" . $mysqli->connect_errno . ") " . $mysqli->connect_error;
+}
+
 /*-------------- Configuration settings --------------*/
 
 //If no number is submitted with the form, this will be the default number of words
@@ -22,7 +29,23 @@ if(!isset($_POST['animalsCheck']) || $_POST['animalsCheck'] == "yes"){
   $animalsPageContent = file_get_contents($animalsPage);
   preg_match_all('{<li>(.*?)</li>}i', $animalsPageContent,$animals);
   $allArray = array_merge($animals[1]);
+
+  	if (!($stmt = $mysqli->prepare("SELECT * FROM animals"))) {
+    	echo "Prepare failed: (" . $mysqli->errno . ") " . $mysqli->error;
+	}
+
+	if (!$stmt->execute()) {
+    	echo "Execute failed: (" . $stmt->errno . ") " . $stmt->error;
+	}
+
+	if (!($res = $stmt->get_result())) {
+    	echo "Getting result set failed: (" . $stmt->errno . ") " . $stmt->error;
+	}
+
+	var_dump($res->fetch_all());
 }
+
+print_r($res);
 
 //Array of clothes
 if(!isset($_POST['clothesCheck']) || $_POST['clothesCheck'] == "yes"){
@@ -45,6 +68,8 @@ if(!isset($_POST['toolsCheck']) || $_POST['toolsCheck'] == "yes"){
   $allArray = array_merge($tools[1],$allArray);
 }
 
+/* explicit close recommended */
+$stmt->close();
 
 //The amount of words to display
 if(isset($_POST['numberOfWords'])){
