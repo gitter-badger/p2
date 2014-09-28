@@ -14,6 +14,9 @@ Demo will be done during section.
 ## Outside code
 * JQuery: http://jquery.com/
 * Bootstrap: http://getbootstrap.com/
+* Button from: http://charliepark.org/bootstrap_buttons/
+* Words from: http://www.manythings.org/vocabulary/lists/a/words.php
+* Characters from: http://docs.oracle.com/cd/E11223_01/doc.904/e10429/app_special_char.htm#BABGCBGA
 
 ## Outside instructions
 * Based on information learned from:
