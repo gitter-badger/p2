@@ -1,6 +1,6 @@
 <?php
-error_reporting(E_ALL);       # Report Errors, Warnings, and Notices
-ini_set('display_errors', 1); # Display errors on page (instead of a log file)
+//error_reporting(E_ALL);       # Report Errors, Warnings, and Notices
+//ini_set('display_errors', 1); # Display errors on page (instead of a log file)
 
 /*-------------- Configuration settings --------------*/
 
@@ -111,27 +111,6 @@ if(!isset($_POST['fruitsCheck']) || $_POST['fruitsCheck'] == "yes"){
         /* fetch values */
         while ($stmt->fetch()) {
             $wordsList[] = $fruits;
-        }
-
-        /* close statement */
-        $stmt->close();
-    }
-}
-
-//Request tools from database
-if(!isset($_POST['toolsCheck']) || $_POST['toolsCheck'] == "yes"){
-
-    /* Prepared statement, stage 1: prepare */
-    if ($stmt = $mysqli->prepare("SELECT type FROM tools")) {
-
-        $stmt->execute();
-
-        /* bind variables to prepared statement */
-        $stmt->bind_result($tools);
-
-        /* fetch values */
-        while ($stmt->fetch()) {
-            $wordsList[] = $tools;
         }
 
         /* close statement */
