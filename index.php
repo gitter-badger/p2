@@ -52,19 +52,13 @@ include('logic.php');
     <div class="container">
       
 		<div class="row">
-			<div class="col-md-4 col-xs-3">&nbsp;</div>
-		  	<div class="col-md-4 col-xs-6">
-		 	  	<h1 class="text-center">xkcd style password </h1>
+		  	<div class="col-xs-12 text-center">
+		 	  	<h1>xkcd style password </h1>
 		  	</div>
-		  	<div class="col-md-4 col-xs-3">&nbsp;</div>
-		</div>
 
-		<div class="row">
-			<div class="col-md-3 col-xs-1">&nbsp;</div>
-		  	<div class="col-md-6 col-xs-10">
-		 	  	<div class="text-center">This application will provide a set of random words you may use instead of a regular password.</div>
+		  	<div class="col-xs-12 text-center">
+		 	  	<p>This application will provide a set of random words you may use instead of a regular password.</p>
 		  	</div>
-		  	<div class="col-md-3 col-xs-1">&nbsp;</div>
 		</div>
 
 		<div class="row">
@@ -144,8 +138,7 @@ include('logic.php');
 
 		  	<div class="col-lg-6 col-sm-12 col-xs-12 text-center">
 				
-					<h3>Select the items to include in the password</h3>
-					<h4>(words from all selected items will be displayed at random):</h4>
+					<h3>Select items to include in the password:</h3>
 
 					
 				  	<input type="hidden" name="animalsCheck" value="no"><!-- //State to be evaluated when form is loaded. Hidden input provides a variable value of "no" to use when unchecked. -->
@@ -172,11 +165,13 @@ include('logic.php');
 
 		  	<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center">
 		  		<p>
-		  			<input type="submit" value="SUBMIT" />
+		  			<input type="submit" class="btn btn-primary btn-lg" value="Gimme a new pass!" />
 		  		</p>
 		  	</div>
 
 		  	<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+		  		<br>
+		  		<br>
 		  		<a href="http://xkcd.com/936/"><img src="img/password_strength.png" class="img-responsive center-block"></a>
 		  	</div>
 		</div> <!-- row -->
