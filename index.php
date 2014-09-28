@@ -82,9 +82,8 @@ include('logic.php');
 		<form name="form" action="index.php" method="post">
 
 		<div class="row">
-			<div class="col-md-2 col-xs-2">&nbsp;</div>
-		  	<div class="col-md-8 col-xs-8">
-		 	  	<div class="text-center">
+			<div class="col-lg-4 col-md-6 col-xs-12">
+				<div class="text-center">
 				
 					<h3>Select the number of words to display:</h3>
 					<select name="numberOfWords">
@@ -100,13 +99,8 @@ include('logic.php');
 					</select>
 				
 				</div>
-		  	</div>
-		  	<div class="col-md-2 col-xs-2">&nbsp;</div>
-		</div>
-
-		<div class="row">
-			<div class="col-md-2 col-xs-2">&nbsp;</div>
-		  	<div class="col-md-8 col-xs-8">
+			</div>
+		  	<div class="col-lg-4 col-md-6 col-xs-12">
 		 	  	<div class="text-center">
 				
 					<h3>How many numbers will you like to include?</h3>
@@ -124,6 +118,42 @@ include('logic.php');
 					</select>
 				
 				</div>
+		  	</div>
+		  	<div class="col-lg-4 col-md-6 col-xs-12">
+
+		  		<div class="text-center">
+				
+					<h3>How many special characters will you like to include?</h3>
+					<select name="numberOfCharacters">
+						<option value="0" <?php if($numberOfCharacters == 0){ echo "selected"; } ?> >0</option>
+					    <option value="1" <?php if($numberOfCharacters == 1){ echo "selected"; } ?> >1</option>
+					    <option value="2" <?php if($numberOfCharacters == 2){ echo "selected"; } ?> >2</option>
+					    <option value="3" <?php if($numberOfCharacters == 3){ echo "selected"; } ?> >3</option>
+					    <option value="4" <?php if($numberOfCharacters == 4){ echo "selected"; } ?> >4</option>
+					    <option value="5" <?php if($numberOfCharacters == 5){ echo "selected"; } ?> >5</option>
+					    <option value="6" <?php if($numberOfCharacters == 6){ echo "selected"; } ?> >6</option>
+					    <option value="7" <?php if($numberOfCharacters == 7){ echo "selected"; } ?> >7</option>
+					    <option value="8" <?php if($numberOfCharacters == 8){ echo "selected"; } ?> >8</option>
+					    <option value="9" <?php if($numberOfCharacters == 9){ echo "selected"; } ?> >9</option>
+					</select>
+				
+				</div>
+
+		  	</div>
+		</div>
+
+		<div class="row">
+			<div class="col-md-2 col-xs-2">&nbsp;</div>
+		  	<div class="col-md-8 col-xs-8">
+		 	  
+		  	</div>
+		  	<div class="col-md-2 col-xs-2">&nbsp;</div>
+		</div>
+
+		<div class="row">
+			<div class="col-md-2 col-xs-2">&nbsp;</div>
+		  	<div class="col-md-8 col-xs-8">
+		 	  
 		  	</div>
 		  	<div class="col-md-2 col-xs-2">&nbsp;</div>
 		</div>
