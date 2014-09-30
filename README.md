@@ -21,3 +21,8 @@ Demo will be done during section.
 ## Outside instructions
 * Based on information learned from:
 * "Up and Running with Bootstrap 3" - http://www.lynda.com/Bootstrap-tutorials/Up-Running-Bootstrap-3/133339-2.html
+
+## Possible improvements
+* Integrate AJAX into the system
+* Wrap CamelCase result for smaller screens
+* Increase number of options of things to select
