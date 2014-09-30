@@ -75,9 +75,9 @@ include('logic.php');
 
 		<form name="form" action="index.php" method="post">
 
-		<div class="row">
-			<div class="col-lg-4 col-sm-6 col-xs-12 text-center">
-				
+			<div class="row">
+				<div class="col-lg-4 col-sm-6 col-xs-12 text-center">
+					
 					<h3>How many words?</h3>
 					<select name="numberOfWords">
 					    <option value="1" <?php if($numberOfWords == 1){ echo "selected"; } ?> >1</option>
@@ -90,10 +90,10 @@ include('logic.php');
 					    <option value="8" <?php if($numberOfWords == 8){ echo "selected"; } ?> >8</option>
 					    <option value="9" <?php if($numberOfWords == 9){ echo "selected"; } ?> >9</option>
 					</select>
-				
-			</div>
-		  	<div class="col-lg-4 col-sm-6 col-xs-12 text-center">
-				
+					
+				</div>
+			  	<div class="col-lg-4 col-sm-6 col-xs-12 text-center">
+					
 					<h3>How many numbers?</h3>
 					<select name="numberOfNumbers">
 						<option value="0" <?php if($numberOfNumbers == 0){ echo "selected"; } ?> >0</option>
@@ -107,10 +107,11 @@ include('logic.php');
 					    <option value="8" <?php if($numberOfNumbers == 8){ echo "selected"; } ?> >8</option>
 					    <option value="9" <?php if($numberOfNumbers == 9){ echo "selected"; } ?> >9</option>
 					</select>
-				
-		  	</div>
-		  	<div class="col-lg-4 col-sm-6 col-xs-12 text-center">
-				
+					
+			  	</div>
+
+			  	<div class="col-lg-4 col-sm-6 col-xs-12 text-center">
+					
 					<h3>How many special characters?</h3>
 					<select name="numberOfCharacters">
 						<option value="0" <?php if($numberOfCharacters == 0){ echo "selected"; } ?> >0</option>
@@ -125,57 +126,59 @@ include('logic.php');
 					    <option value="9" <?php if($numberOfCharacters == 9){ echo "selected"; } ?> >9</option>
 					</select>
 
-		  	</div>
+			  	</div>
 
-		  	<div class="col-lg-6 col-sm-6 col-xs-12 text-center">
-				
+			  	<div class="col-lg-6 col-sm-6 col-xs-12 text-center">
+					
 					<h3>How will you like to separate the words?</h3>
 					<input type="radio" name="separation" value="space" <?php if($separation == "space"){ echo "checked"; } ?> > Space<br>
 					<input type="radio" name="separation" value="camelCase" <?php if($separation == "camelCase"){ echo "checked"; } ?> > CamelCase<br>
 					<input type="radio" name="separation" value="hyphen" <?php if($separation == "hyphen"){ echo "checked"; } ?> > Hyphen<br>
 
-		  	</div>
+			  	</div>
 
-		  	<div class="col-lg-6 col-sm-12 col-xs-12 text-center">
-				
+			  	<div class="col-lg-6 col-sm-12 col-xs-12 text-center">
+					
 					<h3>Select items to include in the password:</h3>
 
-					
-				  	<input type="hidden" name="animalsCheck" value="no"><!-- //State to be evaluated when form is loaded. Hidden input provides a variable value of "no" to use when unchecked. -->
-				  	<input type="checkbox" name="animalsCheck" value="yes" <?php if(!isset($_POST['animalsCheck']) || $_POST['animalsCheck'] == "yes"){ echo "checked"; } ?> />
-				  	 Animals
-				  	<br />
+						
+					<input type="hidden" name="animalsCheck" value="no"><!-- //State to be evaluated when form is loaded. Hidden input provides a variable value of "no" to use when unchecked. -->
+					<input type="checkbox" name="animalsCheck" value="yes" <?php if(!isset($_POST['animalsCheck']) || $_POST['animalsCheck'] == "yes"){ echo "checked"; } ?> />
+					 Animals
+					<br />
 
-		    		<input type="hidden" name="clothesCheck" value="no">
-		    		<input type="checkbox" name="clothesCheck" value="yes" <?php if(!isset($_POST['clothesCheck']) || $_POST['clothesCheck'] == "yes"){ echo "checked"; } ?> />
-		    		 Clothes
-		    		<br />
+			    	<input type="hidden" name="clothesCheck" value="no">
+			    	<input type="checkbox" name="clothesCheck" value="yes" <?php if(!isset($_POST['clothesCheck']) || $_POST['clothesCheck'] == "yes"){ echo "checked"; } ?> />
+			    	 Clothes
+			    	<br />
 
-		    		<input type="hidden" name="fruitsCheck" value="no">
-		    		<input type="checkbox" name="fruitsCheck" value="yes" <?php if(!isset($_POST['fruitsCheck']) || $_POST['fruitsCheck'] == "yes"){ echo "checked"; } ?> />
-		    		 Fruits
-		    		<br />
+			    	<input type="hidden" name="fruitsCheck" value="no">
+			    	<input type="checkbox" name="fruitsCheck" value="yes" <?php if(!isset($_POST['fruitsCheck']) || $_POST['fruitsCheck'] == "yes"){ echo "checked"; } ?> />
+			    	 Fruits
+			    	<br />
 
-		    		<input type="hidden" name="toolsCheck" value="no">
-		    		<input type="checkbox" name="toolsCheck" value="yes" <?php if(!isset($_POST['toolsCheck']) || $_POST['toolsCheck'] == "yes"){ echo "checked"; } ?> />
-		    		 Tools
-		    		<br />
-		    
-		  	</div>
+			    	<input type="hidden" name="toolsCheck" value="no">
+			    	<input type="checkbox" name="toolsCheck" value="yes" <?php if(!isset($_POST['toolsCheck']) || $_POST['toolsCheck'] == "yes"){ echo "checked"; } ?> />
+			    	 Tools
+			    	<br />
+			    
+			  	</div>
 
-		  	<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center">
-		  		<p>
-		  			<input type="submit" class="btn btn-primary btn-lg" value="Gimme a new pass!" />
-		  		</p>
-		  	</div>
+			  	<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center">
+			  		<p>
+			  			<input type="submit" class="btn btn-primary btn-lg" value="Gimme a new pass!" />
+			  		</p>
+			  	</div>
 
-		  	<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-		  		<br>
-		  		<br>
-		  		<a href="http://xkcd.com/936/"><img src="img/password_strength.png" class="img-responsive center-block"></a>
-		  	</div>
-		</div> <!-- row -->
-		
+			  	<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+			  		<br>
+			  		<br>
+			  		<a href="http://xkcd.com/936/">
+			  			<img src="img/password_strength.png" class="img-responsive center-block" alt="xkcd comic strip" >
+			  		</a>
+			  	</div>
+			</div> <!-- row -->
+		</form>
     </div> <!-- /container -->
 
     <script src="js/jquery-1.11.1.min.js"></script>
